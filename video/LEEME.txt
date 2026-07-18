@@ -1,0 +1,30 @@
+Coloca aquí tu video de presentación con el nombre exacto:
+
+    nexus-intro.mp4
+
+¿Por qué hay que hacer esto?
+El video original estaba embebido desde HeyGen (resource2.heygen.ai) mediante un
+iframe. Esos enlaces de HeyGen están pensados para reproducirse sólo dentro de la
+propia plataforma de HeyGen o en el dominio donde se generó el enlace: por eso te
+funcionaba en Render (ese dominio quedó "autorizado" en algún momento) pero no en
+GitHub Pages, ni al abrirlo en Visual Studio Code, ni en ningún otro lugar. No es
+algo que se pueda arreglar desde el código del sitio: es una restricción del lado
+de HeyGen.
+
+La solución definitiva es dejar de depender de un servicio externo y usar tu propio
+archivo de video (mp4), igual que las imágenes del sitio. Así funcionará siempre,
+sin importar dónde abras la página.
+
+Cómo obtener el archivo .mp4 de tu video de HeyGen:
+1) Entra a tu cuenta de HeyGen (heygen.com) con el mismo usuario donde creaste el video.
+2) Ve a tu biblioteca de videos ("My Videos" / "Projects").
+3) Busca el video de la presentación de Nexus y descárgalo (botón "Download" o
+   los tres puntos -> "Download" -> formato MP4).
+4) Renombra el archivo descargado a exactamente: nexus-intro.mp4
+5) Cópialo dentro de esta carpeta "video/" (junto a este archivo LEEME.txt).
+6) Listo. Ábre index.html (o corre el sitio como siempre) y el video se reproducirá
+   solo, sin depender de HeyGen ni de ningún servicio externo.
+
+Si no tienes ya el video descargado y no lo encuentras en tu cuenta de HeyGen,
+contacta al soporte de HeyGen (community.heygen.com) para que te ayuden a
+recuperar el archivo original de ese proyecto.
