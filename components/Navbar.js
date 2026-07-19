@@ -50,7 +50,6 @@ function Navbar({ currentView, setCurrentView, user, setShowAuth }) {
                 <div className="md:hidden bg-nexus-dark border-b border-white/10 absolute top-20 left-0 w-full animate-in slide-in-from-top-4 duration-300">
                     <div className="px-4 pt-2 pb-6 space-y-4 shadow-xl">
                         <button onClick={() => handleNavClick('home')} className="block w-full text-left px-3 py-2 text-base font-medium text-white hover:bg-white/5 rounded-md">Inicio</button>
-                        <button onClick={() => handleNavClick('catalog')} className="block w-full text-left px-3 py-2 text-base font-medium text-white hover:bg-white/5 rounded-md">Catálogo</button>
                         <button onClick={() => handleNavClick('packages')} className="block w-full text-left px-3 py-2 text-base font-medium text-white hover:bg-white/5 rounded-md">Paquetes</button>
                         <button onClick={() => handleNavClick('contact')} className="block w-full text-left px-3 py-2 text-base font-medium text-white hover:bg-white/5 rounded-md">Contacto</button>
                         
