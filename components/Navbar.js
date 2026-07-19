@@ -18,7 +18,6 @@ function Navbar({ currentView, setCurrentView, user, setShowAuth }) {
                     <div className="hidden md:block">
                         <div className="flex items-baseline space-x-8">
                             <button onClick={() => handleNavClick('home')} className={`hover:text-nexus-accent transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] ${currentView==='home' ? 'text-nexus-accent font-semibold drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]' : 'text-gray-300'}`}>Inicio</button>
-                            <button onClick={() => handleNavClick('catalog')} className={`hover:text-nexus-accent transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] ${currentView==='catalog' ? 'text-nexus-accent font-semibold drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]' : 'text-gray-300'}`}>Catálogo</button>
                             <button onClick={() => handleNavClick('packages')} className={`hover:text-nexus-accent transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] ${currentView==='packages' ? 'text-nexus-accent font-semibold drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]' : 'text-gray-300'}`}>Paquetes</button>
                             <button onClick={() => handleNavClick('contact')} className={`hover:text-nexus-accent transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] ${currentView==='contact' ? 'text-nexus-accent font-semibold drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]' : 'text-gray-300'}`}>Contacto</button>
                         </div>
