@@ -40,7 +40,6 @@ function Footer({ setCurrentView }) {
                         <h4 className="text-white font-semibold mb-4">Enlaces Rápidos</h4>
                         <ul className="space-y-2">
                             <li><button onClick={() => setCurrentView('home')} className="text-gray-400 hover:text-nexus-accent transition">Inicio</button></li>
-                            <li><button onClick={() => setCurrentView('catalog')} className="text-gray-400 hover:text-nexus-accent transition">Catálogo</button></li>
                             <li><button onClick={() => setCurrentView('packages')} className="text-gray-400 hover:text-nexus-accent transition">Paquetes</button></li>
                             <li><button onClick={() => setCurrentView('contact')} className="text-gray-400 hover:text-nexus-accent transition">Contacto</button></li>
                         </ul>
