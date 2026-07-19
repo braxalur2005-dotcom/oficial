@@ -221,6 +221,11 @@ function App() {
                         <h2 className="section__title text-3xl lg:text-4xl font-bold text-white mb-10">EL CORAZÓN DIGITAL DE <span className="text-gradient">POLANCO</span></h2>
                         <div className="location grid gap-8 lg:grid-cols-[0.9fr_1.1fr] items-start">
                             <div className="location__cards grid gap-6">
+                                  <div className="info-card bg-white/5 border border-white/10 rounded-[1.5rem] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
+                                    <span className="info-card__label text-xs uppercase tracking-[0.35em] text-nexus-accent/80">DIRECCIÓN</span>
+                                    <p className="info-card__main text-2xl font-semibold text-white mt-4">Polanco</p>
+                                    <p className="info-card__sub text-gray-400 mt-3">Miguel Hidalgo<br />CDMX, México</p>
+                                </div>
                                 <a
                                     href="https://www.google.com/maps/dir/?api=1&destination=19.4326,-99.1985"
                                     target="_blank"
