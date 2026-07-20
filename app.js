@@ -280,10 +280,6 @@ function App() {
                                     <p className="info-card__main text-2xl font-semibold text-white mt-4">Polanco</p>
                                     <p className="info-card__sub text-gray-400 mt-3">Miguel Hidalgo<br />CDMX, México</p>
                                 </div>
-                                <div className="info-card bg-white/5 border border-white/10 rounded-[1.5rem] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
-                                    <span className="info-card__label text-xs uppercase tracking-[0.35em] text-nexus-accent/80">COORDENADAS GPS</span>
-                                    <p className="info-card__coords text-2xl font-semibold text-white mt-4">19.4326° N<br />99.1985° W</p>
-                                </div>
                                 <a
                                     href="https://www.google.com/maps/dir/?api=1&destination=19.4326,-99.1985"
                                     target="_blank"
