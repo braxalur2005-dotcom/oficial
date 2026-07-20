@@ -272,7 +272,7 @@ function App() {
                 </section>
                 <section id="ubicacion" className="section section--alt mt-20">
                     <div className="max-w-7xl mx-auto px-4 py-16">
-                        <h2 className="section__title text-3xl lg:text-4xl font-bold text-white mb-10">NOS ENCONTRAMOS EN <span className="text-gradient">POLANCO</span></h2>
+                        <h2 className="section__title text-3xl lg:text-4xl font-bold text-white mb-10">EL CORAZÓN DIGITAL DE <span className="text-gradient">POLANCO</span></h2>
                         <div className="location grid gap-8 lg:grid-cols-[0.9fr_1.1fr] items-start">
                             <div className="location__cards grid gap-6">
                                 <div className="info-card bg-white/5 border border-white/10 rounded-[1.5rem] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
