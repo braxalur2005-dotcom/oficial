@@ -137,6 +137,60 @@ function App() {
               'SEO técnico desde el inicio',
               'Rendimiento estable en todo momento'
           ]
+      },
+      {
+          id: 'cotizacion',
+          title: 'Cotización Inteligente',
+          icon: 'icon-calculator',
+          buttonBaseClasses: 'w-full text-left rounded-3xl border bg-white/5 p-6 transition duration-300 hover:border-white/20 hover:bg-white/10',
+          activeButtonClasses: 'border-nexus-accent/60 bg-nexus-accent/10 shadow-[0_0_30px_rgba(59,130,246,0.18)]',
+          badgeClasses: 'inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-nexus-accent/10 border border-nexus-accent/20 text-nexus-accent text-2xl transition-all duration-300',
+          cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-accent/20 text-nexus-accent text-3xl',
+          description: 'Tu cliente describe el daño, el sistema calcula el costo al instante. Sin llamadas, sin esperas.',
+          details: 'Cotizaciones automáticas 24/7 directamente en tu sitio. Tu cliente describe el daño, el sistema calcula el costo al instante. Sin llamadas, sin esperas.',
+          imageSrc: 'img/cotizador-inteligente.jpg.png',
+          imageAlt: 'Cotizador Inteligente Newo Studio Tecno',
+          features: [
+              'Formulario guiado por dispositivo',
+              'Precios en tiempo real',
+              'Envío automático al cliente'
+          ]
+      },
+      {
+          id: 'rastreador',
+          title: 'Rastreador de Órdenes en Tiempo Real',
+          icon: 'icon-loader',
+          buttonBaseClasses: 'w-full text-left rounded-3xl border bg-white/5 p-6 transition duration-300 hover:border-white/20 hover:bg-white/10',
+          activeButtonClasses: 'border-nexus-purple/60 bg-nexus-purple/10 shadow-[0_0_30px_rgba(109,40,217,0.18)]',
+          badgeClasses: 'inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-nexus-purple/10 border border-nexus-purple/20 text-nexus-purple text-2xl transition-all duration-300',
+          cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-purple/20 text-nexus-purple text-3xl',
+          description: 'Tu cliente ve el estatus real de su equipo sin llamadas interminables.',
+          details: 'Se acabaron las llamadas de “¿ya está listo mi aparato?”. Tu cliente usa su número de orden y ve un semáforo en vivo con el estatus real: Recibido, En diagnóstico, En reparación y Listo.',
+          imageSrc: 'img/rastreador-ordenes.jpg.png',
+          imageAlt: 'Rastreador de Órdenes en Tiempo Real Newo Studio Tecno',
+          features: [
+              'Semáforo visual con 4 estatus claros',
+              'Notificaciones automáticas de avance',
+              'Cero llamadas repetidas preguntando lo mismo'
+          ]
+      },
+      {
+          id: 'ubicacion',
+          title: 'Ubicación Digital Estratégica',
+          icon: 'icon-map-pin',
+          buttonBaseClasses: 'w-full text-left rounded-3xl border bg-white/5 p-6 transition duration-300 hover:border-white/20 hover:bg-white/10',
+          activeButtonClasses: 'border-nexus-blue/60 bg-nexus-blue/10 shadow-[0_0_30px_rgba(29,78,216,0.18)]',
+          badgeClasses: 'inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-nexus-blue/10 border border-nexus-blue/20 text-nexus-blue text-2xl transition-all duration-300',
+          cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-blue/20 text-nexus-blue text-3xl',
+          description: 'Aparece primero cuando clientes de tu zona buscan reparación cerca de ti.',
+          details: 'Cuando alguien busca en Google “reparación de celulares cerca de mí”, queremos que salgas tú primero. Configuramos tu página para posicionarla como la opción más cercana y confiable de tu zona.',
+          imageSrc: 'img/ubicacion-digital.jpg.png',
+          imageAlt: 'Ubicación Digital Estratégica Newo Studio Tecno',
+          features: [
+              'Apareces primero en búsquedas de tu zona',
+              'Ficha de Google optimizada con mapa, horarios y reseñas',
+              'Más clientes nuevos sin gastar en anuncios'
+          ]
       }
   ];
 
@@ -218,13 +272,17 @@ function App() {
                 </section>
                 <section id="ubicacion" className="section section--alt mt-20">
                     <div className="max-w-7xl mx-auto px-4 py-16">
-                        <h2 className="section__title text-3xl lg:text-4xl font-bold text-white mb-10">EL CORAZÓN DIGITAL DE <span className="text-gradient">POLANCO</span></h2>
+                        <h2 className="section__title text-3xl lg:text-4xl font-bold text-white mb-10">NOS ENCONTRAMOS EN <span className="text-gradient">POLANCO</span></h2>
                         <div className="location grid gap-8 lg:grid-cols-[0.9fr_1.1fr] items-start">
                             <div className="location__cards grid gap-6">
-                                  <div className="info-card bg-white/5 border border-white/10 rounded-[1.5rem] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
+                                <div className="info-card bg-white/5 border border-white/10 rounded-[1.5rem] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
                                     <span className="info-card__label text-xs uppercase tracking-[0.35em] text-nexus-accent/80">DIRECCIÓN</span>
                                     <p className="info-card__main text-2xl font-semibold text-white mt-4">Polanco</p>
                                     <p className="info-card__sub text-gray-400 mt-3">Miguel Hidalgo<br />CDMX, México</p>
+                                </div>
+                                <div className="info-card bg-white/5 border border-white/10 rounded-[1.5rem] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
+                                    <span className="info-card__label text-xs uppercase tracking-[0.35em] text-nexus-accent/80">COORDENADAS GPS</span>
+                                    <p className="info-card__coords text-2xl font-semibold text-white mt-4">19.4326° N<br />99.1985° W</p>
                                 </div>
                                 <a
                                     href="https://www.google.com/maps/dir/?api=1&destination=19.4326,-99.1985"
@@ -253,7 +311,7 @@ function App() {
             </div>
         )}
         
-        
+        {currentView === 'catalog' && <Catalog />}
         {currentView === 'packages' && <Packages user={user} setShowAuth={setShowAuth} onPurchaseSuccess={handlePurchaseSuccess} />}
         {currentView === 'contact' && <Contact />}
         {currentView === 'profile' && <Profile user={user} onLogout={handleLogout} onUpdateUser={handleUpdateUser} />}
