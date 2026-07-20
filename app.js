@@ -307,7 +307,6 @@ function App() {
             </div>
         )}
         
-        {EL CORAZÓN DIGITAL DE }
         {currentView === 'packages' && <Packages user={user} setShowAuth={setShowAuth} onPurchaseSuccess={handlePurchaseSuccess} />}
         {currentView === 'contact' && <Contact />}
         {currentView === 'profile' && <Profile user={user} onLogout={handleLogout} onUpdateUser={handleUpdateUser} />}
