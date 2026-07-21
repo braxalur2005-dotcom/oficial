@@ -195,7 +195,7 @@ function App() {
   ];
 
   const [activeService, setActiveService] = useState('desarrollo');
-  const activeServiceItem = services.find((item) => item.id === activeService) || services[0];
+  
 
   return (
     <div className="min-h-screen flex flex-col relative" data-name="app" data-file="app.js">
