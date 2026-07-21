@@ -83,17 +83,6 @@ function App() {
       setCurrentView('profile');
   };
 
-  const isAdmin = user?.objectData?.email === 'nexus.atencion@outlook.com';
-
-  if (isAdmin) {
-      return (
-          <div data-name="app" data-file="app.js">
-              <AdminDashboard user={user} onLogout={handleLogout} />
-          </div>
-      );
-  }
-
-
   const services = [
       {
           id: 'desarrollo',
