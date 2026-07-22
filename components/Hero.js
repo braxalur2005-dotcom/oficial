@@ -2,7 +2,7 @@ function Hero({ setCurrentView }) {
     const [videoLoaded, setVideoLoaded] = useState(false);
     const [videoMissing, setVideoMissing] = useState(false);
     const LOCAL_VIDEO_SRC = 'video/nexus-intro.mp4';
-    const POSTER_SRC = 'img/WhatsApp Image 2026-06-28 at 4.27.02 PM.png';
+    const POSTER_SRC = 'img/gif.gif';
 
     return (
         <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
