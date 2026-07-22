@@ -313,6 +313,11 @@ function App() {
                                             <p className="mt-2 text-sm leading-7 text-gray-400">{item.text}</p>
                                         </div>
                                     </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <section className="max-w-7xl mx-auto px-4 py-20">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold">SOLUCIONES DIGITALES QUE <span className="gradient-text">TRABAJAN POR TI</span></h2>
