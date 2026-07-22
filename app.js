@@ -54,6 +54,10 @@ function App() {
       }
   }, []);
 
+  useEffect(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [currentView]);
+
   const handleLogin = (userData) => {
       setUser(userData);
       setShowAuth(false);
@@ -195,7 +199,61 @@ function App() {
   ];
 
   const [activeService, setActiveService] = useState('desarrollo');
-  const activeServiceItem = services.find((item) => item.id === activeService) || services[0];
+  if (existingUseconst activeServiceItem = services.find((item) => item.id === activeService) || services[0];
+  const touchStartX = useRef(null);
+  const digitalCardStyles = `
+    .strategy-card {
+      width: 100%;
+      min-height: 180px;
+      border-radius: 20px;
+      padding: 5px;
+      box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+      background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    }
+
+    .strategy-card__content {
+      background: rgb(2, 3, 32);
+      border-radius: 17px;
+      width: 100%;
+      height: 100%;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  `;
+
+  const changeService = (direction) => {
+      const currentIndex = services.findIndex((item) => item.id === activeService);
+      if (currentIndex === -1) return;
+      const nextIndex = direction === 'next'
+          ? Math.min(currentIndex + 1, services.length - 1)
+          : Math.max(currentIndex - 1, 0);
+      setActiveService(services[nextIndex].id);
+  };
+
+  const handleTouchStart = (event) => {
+      touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event) => {
+      if (touchStartX.current === null) return;
+      const touchEndX = event.changedTouches[0].clientX;
+      const deltaX = touchEndX - touchStartX.current;
+      if (deltaX > 50) {
+          changeService('prev');
+      } else if (deltaX < -50) {
+          changeService('next');
+      }
+      touchStartX.current = null;
+  };r) setUser(existingUser);
+          });
+      }
+  }, []);
+
+  useEffect(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [currentView]);
 
   const isAdmin = user?.objectData?.email === 'nexus.atencion@outlook.com';
 
@@ -210,6 +268,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col relative" data-name="app" data-file="app.js">
+      <style>{digitalCardStyles}</style>
       <div className="absolute inset-0 -z-20 pointer-events-none">
         <div className="container absolute inset-0">
           <div id="stars"></div>
