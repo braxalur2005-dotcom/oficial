@@ -4,6 +4,23 @@ function Hero({ setCurrentView }) {
     const LOCAL_VIDEO_SRC = 'video/nexus-intro.mp4';
     const POSTER_SRC = 'img/gif.gif';
 
+        useEffect(() => {
+        if (!videoLoaded) return;
+
+        const playVideo = async () => {
+            if (!videoRef.current) return;
+
+            try {
+                await videoRef.current.play();
+            } catch (error) {
+                console.warn('No se pudo iniciar la reproducción del video automáticamente:', error);
+            }
+        };
+
+        const timer = window.setTimeout(playVideo, 80);
+        return () => window.clearTimeout(timer);
+    }, [videoLoaded]);
+    
     return (
         <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
             {/* Background Blobs */}
@@ -27,8 +44,11 @@ function Hero({ setCurrentView }) {
                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-slate-950 text-center px-6">
                                     <img
                                         src={POSTER_SRC}
-                                        alt="Nexus"
-                                        className="absolute inset-0 h-full w-full object-cover opacity-30"
+                                        alt="Vista previa de la presentación de Nexus"
+                                        className="absolute inset-0 h-full w-full object-cover opacity-100"
+                                        loading="eager"
+                                        decoding="async"
+                                        fetchpriority="high"
                                     />
                                     <p className="relative text-sm text-gray-300 max-w-sm">
                                         Todavía no agregaste el video de presentación. Coloca tu archivo
@@ -54,10 +74,13 @@ function Hero({ setCurrentView }) {
                                 >
                                     <img
                                         src={POSTER_SRC}
-                                        alt="Presentación Nexus"
+                                        alt="Presentación visual de Nexus Web Agency"
                                         className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                                        loading="eager"
+                                        decoding="async"
+                                        fetchpriority="high"
                                     />
-                                    <span className="absolute inset-0 bg-black/30 transition duration-300 group-hover:bg-black/40" />
+                                    <span className="absolute inset-0 bg-black/10 transition duration-300 group-hover:bg-black/20" />
                                     <span className="absolute inset-0 flex items-center justify-center">
                                         <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-nexus-purple/95 text-white shadow-[0_15px_40px_rgba(109,40,217,0.4)] transition-transform duration-300 group-hover:scale-110">
                                             <svg viewBox="0 0 24 24" className="h-8 w-8">
