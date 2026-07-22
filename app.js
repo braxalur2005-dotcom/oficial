@@ -199,7 +199,7 @@ function App() {
   ];
 
   const [activeService, setActiveService] = useState('desarrollo');
-  if (existingUseconst activeServiceItem = services.find((item) => item.id === activeService) || services[0];
+  const activeServiceItem = services.find((item) => item.id === activeService) || services[0];
   const touchStartX = useRef(null);
   const digitalCardStyles = `
     .strategy-card {
@@ -246,14 +246,7 @@ function App() {
           changeService('next');
       }
       touchStartX.current = null;
-  };r) setUser(existingUser);
-          });
-      }
-  }, []);
-
-  useEffect(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, [currentView]);
+  };
 
   const isAdmin = user?.objectData?.email === 'nexus.atencion@outlook.com';
 
