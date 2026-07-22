@@ -276,59 +276,125 @@ function App() {
         {currentView === 'home' && (
             <div>
                 <Hero setCurrentView={setCurrentView} />
-                <section className="max-w-7xl mx-auto px-4 py-20">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold">TECNOLOGÍA QUE <span className="gradient-text">TRABAJA POR TI</span></h2>
-                    </div>
-
-                    <div className="px-0">
-                        <div className="tabs">
-                            <div className="tabs__nav grid gap-3 md:grid-cols-3 mb-6">
-                                {services.map((service) => (
-                                    <button
-                                        key={service.id}
-                                        type="button"
-                                        onClick={() => setActiveService(service.id)}
-                                        className={`group text-left transition duration-300 ease-out px-0 py-1 focus:outline-none ${activeService === service.id ? 'text-white underline decoration-nexus-accent underline-offset-4' : 'text-nexus-accent hover:text-white hover:underline underline-offset-4 hover:scale-[1.02]'}`}
-                                    >
-                                        <h3 className="text-lg font-semibold transition-transform duration-300 ease-out group-hover:scale-[1.02]">{service.title}</h3>
-                                    </button>
-                                ))}
+      <section className="max-w-7xl mx-auto px-4 pb-8 sm:pb-12">
+                    <div className="rounded-[2rem] border border-white/10 bg-transparent p-6 shadow-none sm:p-8 lg:p-10">
+                        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                            <div className="max-w-2xl">
+                                <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-nexus-accent/80">Estrategia digital clara</p>
+                                <h2 className="text-3xl font-bold text-white sm:text-4xl">
+                                    Creamos sitios web que <span className="gradient-text">mejoran tu presencia y convierten</span>
+                                </h2>
+                                <p className="mt-5 text-lg leading-8 text-gray-300">
+                                    Diseñamos experiencias digitales rápidas, accesibles y preparadas para SEO orgánico para que tu negocio sea encontrado, entienda mejor a sus clientes y crezca con confianza.
+                                </p>
                             </div>
-
-                            <div className="tabs__content">
-                                {services.map((service) => (
-                                    <div
-                                        key={service.id}
-                                        className={`tab-pane ${activeService === service.id ? 'tab-pane--active' : ''} p-8`}
-                                    >
-                                        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
-                                            <div>
-                                                <div className="flex items-center gap-4 mb-6">
-                                                    <div className={service.cardBadgeClasses}>
-                                                        <i className={service.icon}></i>
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-sm uppercase tracking-[0.35em] text-nexus-accent/80">{service.title}</p>
-                                                        <h3 className="mt-2 text-3xl font-semibold text-white">{service.title}</h3>
-                                                    </div>
-                                                </div>
-                                                <p className="text-gray-300 leading-relaxed mb-8">{service.details}</p>
-                                                <ul className="space-y-4">
-                                                    {service.features.map((feature) => (
-                                                        <li key={feature} className="flex items-start gap-3 text-gray-200">
-                                                            <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-nexus-accent/15 text-nexus-accent">✓</span>
-                                                            <span>{feature}</span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                            <div className="group rounded-[1.75rem] overflow-hidden border border-white/10 bg-black/10 shadow-[0_12px_50px_rgba(0,0,0,0.35)] transition-transform duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
-                                                <img src={service.imageSrc} alt={service.imageAlt} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                                            </div>
+                            <div className="grid gap-4 md:grid-cols-2">
+                                {[
+                                    {
+                                        title: 'SEO orgánico',
+                                        text: 'Estructura clara, contenido estratégico y buenas prácticas para ganar visibilidad en Google.'
+                                    },
+                                    {
+                                        title: 'Rendimiento',
+                                        text: 'Carga rápida y diseño optimizado para que la experiencia sea fluida desde el primer segundo.'
+                                    },
+                                    {
+                                        title: 'Accesibilidad',
+                                        text: 'Interfaces comprensibles, contrastes adecuados y navegación intuitiva para todos los usuarios.'
+                                    },
+                                    {
+                                        title: 'Automatización',
+                                        text: 'Procesos más ágiles para que tu negocio opere de forma más inteligente.'
+                                    }
+                                ].map((item) => (
+                                    <div key={item.title} className="strategy-card">
+                                        <div className="strategy-card__content">
+                                            <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                                            <p className="mt-2 text-sm leading-7 text-gray-400">{item.text}</p>
                                         </div>
                                     </div>
-                                ))}
+                <section className="max-w-7xl mx-auto px-4 py-20">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold">SOLUCIONES DIGITALES QUE <span className="gradient-text">TRABAJAN POR TI</span></h2>
+                    </div>
+ 
+                    <div className="px-0">
+                        <div className="mx-auto max-w-6xl">
+                            <div className="mb-6 flex items-center justify-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => changeService('prev')}
+                                    className="button group"
+                                    aria-label="Sección anterior"
+                                >
+                                    <span className="button-content">
+                                        <svg
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            className="button-icon button-icon-left"
+                                        >
+                                            <path d="M11 19l-7-7 7-7m8 14l-7-7 7-7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+ 
+                                <div className="min-w-0 flex-1 text-center">
+                                    <span className="text-sm font-semibold uppercase tracking-[0.35em] text-nexus-accent/80">
+                                        {activeServiceItem.title}
+                                    </span>
+                                </div>
+ 
+                                <button
+                                    type="button"
+                                    onClick={() => changeService('next')}
+                                    className="button group"
+                                    aria-label="Sección siguiente"
+                                >
+                                    <span className="button-content">
+                                        <svg
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            className="button-icon button-icon-right"
+                                        >
+                                            <path d="M13 5l7 7-7 7M5 5l7 7-7 7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+ 
+                            <div
+                                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-transparent p-4 shadow-none sm:p-6 lg:p-8"
+                                onTouchStart={handleTouchStart}
+                                onTouchEnd={handleTouchEnd}
+                                style={{ touchAction: 'pan-y' }}
+                            >
+                                <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
+                                    <div>
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <div className={activeServiceItem.cardBadgeClasses}>
+                                                <i className={activeServiceItem.icon}></i>
+                                            </div>
+                                            <div>
+                                                <p className="text-sm uppercase tracking-[0.35em] text-nexus-accent/80">{activeServiceItem.title}</p>
+                                                <h3 className="mt-2 text-3xl font-semibold text-white">{activeServiceItem.title}</h3>
+                                            </div>
+                                        </div>
+                                        <p className="text-gray-300 leading-relaxed mb-8">{activeServiceItem.details}</p>
+                                        <ul className="space-y-4">
+                                            {activeServiceItem.features.map((feature) => (
+                                                <li key={feature} className="flex items-start gap-3 text-gray-200">
+                                                    <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-nexus-accent/15 text-nexus-accent">✓</span>
+                                                    <span>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div className="group rounded-[1.75rem] overflow-hidden border border-white/10 bg-black/10 shadow-[0_12px_50px_rgba(0,0,0,0.35)] transition-transform duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
+                                        <img src={activeServiceItem.imageSrc} alt={activeServiceItem.imageAlt} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
