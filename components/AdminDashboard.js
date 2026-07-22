@@ -169,7 +169,7 @@ function AdminDashboard({ user, onLogout }) {
         <div className="min-h-screen bg-nexus-dark text-white flex">
             <aside className="w-64 bg-white/5 border-r border-white/10 flex flex-col fixed h-full z-10">
                 <div className="p-6 border-b border-white/10 flex items-center">
-                    <div className="icon-triangle text-2xl text-nexus-accent"></div>
+                    <div className="img/WhatsApp Image 2026-06-28 at 4.27.02 PM.png"></div>
                     <span className="ml-2 text-xl font-heading font-black tracking-widest text-nexus-accent">ADMIN</span>
                 </div>
                 <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
