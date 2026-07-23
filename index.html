@@ -16,7 +16,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -24,18 +24,18 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        heading: ['Outfit', 'sans-serif'],
+                        heading: ['Orbitron', 'sans-serif'],
                     },
                     colors: {
                         nexus: {
-                            dark: '#090d16',
-                            blue: '#10b981',
-                            purple: '#34d399',
-                            accent: '#10b981',
-                            glow: '#34d399'
+                            dark: '#060a10',
+                            blue: '#22d3ee',
+                            purple: '#10e28a',
+                            accent: '#22d3ee',
+                            glow: '#10e28a'
                         },
                         gray: {
-                            400: '#94A3B8'
+                            400: '#8ea0ad'
                         }
                     },
                     animation: {
@@ -73,7 +73,7 @@
                 @apply bg-transparent backdrop-blur-none border-0 rounded-none transition-all duration-300 relative overflow-hidden;
             }
             .btn-primary {
-                @apply relative overflow-hidden px-8 py-3 rounded-lg bg-gradient-to-r from-nexus-blue via-nexus-purple to-[#d4af37] text-white font-semibold transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:-translate-y-1 hover:scale-105;
+                @apply relative overflow-hidden px-8 py-3 rounded-lg bg-gradient-to-r from-nexus-blue to-nexus-purple text-white font-semibold transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,226,138,0.4)] hover:-translate-y-1 hover:scale-105;
             }
             .btn-primary::after {
                 content: '';
@@ -155,7 +155,7 @@
             color: #10b981;
         }
         .gradient-text {
-            @apply bg-clip-text text-transparent bg-gradient-to-r from-nexus-accent via-nexus-glow to-[#d4af37];
+            @apply bg-clip-text text-transparent bg-gradient-to-r from-nexus-accent to-nexus-glow;
         }
         .container {
             height: 100%;
