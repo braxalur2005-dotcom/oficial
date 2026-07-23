@@ -262,13 +262,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col relative" data-name="app" data-file="app.js">
       <style>{digitalCardStyles}</style>
-      <div className="absolute inset-0 -z-20 pointer-events-none">
-        <div className="container absolute inset-0">
-          <div id="stars"></div>
-          <div id="stars2"></div>
-          <div id="stars3"></div>
-        </div>
-      </div>
+      <div className="absolute inset-0 -z-20 pointer-events-none"></div>
       <div className="absolute inset-0 -z-10 bg-black/20 pointer-events-none"></div>
       <Navbar currentView={currentView} setCurrentView={setCurrentView} user={user} setShowAuth={setShowAuth} />
       
