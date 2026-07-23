@@ -287,6 +287,15 @@ function App() {
                                 <p className="mt-5 text-lg leading-8 text-gray-300">
                                     Diseñamos experiencias digitales rápidas, accesibles y preparadas para SEO orgánico para que tu negocio sea encontrado, entienda mejor a sus clientes y crezca con confianza.
                                 </p>
+                                <div className="mt-8 flex flex-wrap gap-3">
+                                    <button
+                                        type="button"
+                                        onClick={() => setCurrentView('contact')}
+                                        className="btn-primary"
+                                    >
+                                        Solicitar propuesta
+                                    </button>
+                                </div>
                             </div>
                             <div className="grid gap-4 md:grid-cols-2">
                                 {[
