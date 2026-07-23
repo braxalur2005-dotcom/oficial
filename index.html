@@ -89,6 +89,68 @@
                 @apply block opacity-100 translate-y-0;
             }
         }
+        .button {
+            position: relative;
+            display: inline-flex;
+            overflow: hidden;
+            border-radius: 9999px;
+            padding: 2px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            transition: transform 0.3s ease;
+        }
+ 
+        .button::before {
+            content: "";
+            position: absolute;
+            inset: -1000%;
+            background: linear-gradient(90deg, #ec4899, #9333ea, #2563eb);
+            animation: spin 2s linear infinite;
+        }
+ 
+        .button:hover {
+            transform: scale(1.05);
+        }
+ 
+        .button-content {
+            position: relative;
+            display: inline-flex;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background: #020617;
+            padding: 0.75rem 1.25rem;
+            backdrop-filter: blur(24px);
+            transition: background-color 0.3s ease;
+        }
+ 
+        .button:hover .button-content {
+            background-color: rgba(2, 6, 23, 0.9);
+        }
+ 
+        .button-icon {
+            height: 20px;
+            width: 20px;
+            color: #3b82f6;
+            transition: transform 0.3s ease;
+        }
+ 
+        .button:hover .button-icon-left {
+            transform: translateX(-3px);
+        }
+ 
+        .button:hover .button-icon-right {
+            transform: translateX(3px);
+        }
+ 
+        .button-icon-right {
+            color: #3b82f6;
+        }
         .gradient-text {
             @apply bg-clip-text text-transparent bg-gradient-to-r from-nexus-accent to-nexus-glow;
         }
