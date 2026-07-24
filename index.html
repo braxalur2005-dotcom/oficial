@@ -28,14 +28,16 @@
                     },
                     colors: {
                         nexus: {
-                            dark: '#060a10',
-                            blue: '#22d3ee',
+                            dark: '#040916',
+                            blue: '#00B8FF',
                             purple: '#10e28a',
-                            accent: '#22d3ee',
+                            accent: '#00B8FF',
                             glow: '#10e28a'
                         },
                         gray: {
-                            400: '#8ea0ad'
+                            300: '#D7DDE6',
+                            400: '#BFC7D3',
+                            500: '#8D98A8'
                         }
                     },
                     animation: {
@@ -73,7 +75,7 @@
                 @apply bg-transparent backdrop-blur-none border-0 rounded-none transition-all duration-300 relative overflow-hidden;
             }
             .btn-primary {
-                @apply relative overflow-hidden px-8 py-3 rounded-lg bg-gradient-to-r from-nexus-blue to-nexus-purple text-white font-semibold transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,226,138,0.4)] hover:-translate-y-1 hover:scale-105;
+                @apply relative overflow-hidden px-8 py-3 rounded-lg bg-gradient-to-r from-nexus-blue to-nexus-purple text-white font-semibold transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,184,255,0.4)] hover:-translate-y-1 hover:scale-105;
             }
             .btn-primary::after {
                 content: '';
@@ -155,7 +157,7 @@
             color: #10b981;
         }
         .gradient-text {
-            @apply bg-clip-text text-transparent bg-gradient-to-r from-nexus-accent to-nexus-glow;
+            @apply bg-clip-text text-transparent bg-gradient-to-r from-nexus-accent via-[#18E7FF] to-nexus-glow;
         }
         .container {
             height: 100%;
