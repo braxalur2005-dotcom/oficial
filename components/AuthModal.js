@@ -45,7 +45,7 @@ function AuthModal({ onClose, onLogin }) {
                 
                 <div className="text-center mb-8">
                     <div className="flex justify-center mb-4">
-                        <img src="img/WhatsApp Image 2026-06-28 at 4.27.02 PM.png" className="h-10" />
+                        <img src="img/Logo_Nexus_Recolor_Transparente.png" className="h-10" />
                     </div>
                     <h2 className="text-2xl font-bold">{isLogin ? 'Bienvenido de Nuevo' : 'Crear Cuenta'}</h2>
                     <p className="text-gray-400 text-sm mt-2">
