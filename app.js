@@ -307,7 +307,7 @@ function App() {
                                     },
                                     {
                                         title: 'Automatización',
-                                        text: 'Procesos más ágiles para que tu negocio opere de forma más inteligente.'
+                                        text: 'Procesos más ágiles para que tu negocio opere de forma más inteligente, eficiente y rápida.'
                                     }
                                 ].map((item) => (
                                     <div key={item.title} className="strategy-card">
