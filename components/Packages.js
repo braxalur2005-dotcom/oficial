@@ -116,7 +116,7 @@ function Packages({ user, setShowAuth, onPurchaseSuccess }) {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* PAQUETE 1 — TODO INCLUIDO */}
-                <div className="glass-panel p-8 relative flex flex-col border-nexus-purple shadow-[0_0_30px_rgba(16,226,138,0.2)]">
+                <div className="glass-panel p-8 relative flex flex-col" style={{ border: '2px solid #10e28a', borderRadius: '1rem' }}>
                     <div className="absolute top-0 right-0 bg-gradient-to-r from-nexus-blue to-nexus-purple text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-xl shadow-lg">
                         TODO INCLUIDO
                     </div>
@@ -174,7 +174,7 @@ function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                 </div>
 
                 {/* PAQUETE 2 — ARMA TU PAQUETE */}
-                <div className="glass-panel p-8 relative flex flex-col">
+                <div className="glass-panel p-8 relative flex flex-col" style={{ border: '2px solid #10e28a', borderRadius: '1rem' }}>
                     <h3 className="text-2xl font-bold mb-2 relative z-10">Paquete 2 — Arma tu Paquete</h3>
                     <p className="text-gray-400 mb-6 relative z-10">
                         ¿Ya tienes página web? Elige solo las herramientas que necesitas.
