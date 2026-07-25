@@ -6,7 +6,7 @@ function Footer({ setCurrentView }) {
                     <div className="md:col-span-2">
                         <div className="flex items-center cursor-pointer mb-4" onClick={() => setCurrentView('home')}>
                             <img src="img/Logo_Nexus_Recolor_Transparente.png" className="h-10" />
-                            <span className="ml-2 text-3xl font-heading font-black tracking-widest">NEXUS</span>
+                            <img src="img/nexus-text-logo.png" alt="NEXUS" className="h-7 ml-2" />
                         </div>
                         <p className="text-gray-400 max-w-sm mb-6">
                             Transformando ideas en experiencias digitales extraordinarias. Construimos el futuro de la web, un píxel a la vez.
@@ -62,3 +62,4 @@ function Footer({ setCurrentView }) {
         </footer>
     );
 }
+
