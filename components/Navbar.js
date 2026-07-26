@@ -7,7 +7,7 @@ function Navbar({ currentView, setCurrentView, user, setShowAuth }) {
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-nexus-dark/50 backdrop-blur-md border-b border-white/10">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-nexus-dark/50 backdrop-blur-md border-b border-white/10" aria-label="Navegación principal">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     <div className="flex items-center cursor-pointer group" onClick={() => handleNavClick('home')}>
@@ -38,7 +38,7 @@ function Navbar({ currentView, setCurrentView, user, setShowAuth }) {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center">
-                        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-300 hover:text-white focus:outline-none">
+                        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-300 hover:text-white focus:outline-none" aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={isMobileMenuOpen}>
                             <div className={isMobileMenuOpen ? "icon-x text-2xl" : "icon-menu text-2xl"}></div>
                         </button>
                     </div>
@@ -71,4 +71,5 @@ function Navbar({ currentView, setCurrentView, user, setShowAuth }) {
         </nav>
     );
 }
+
 
