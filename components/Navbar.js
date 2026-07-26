@@ -11,7 +11,7 @@ function Navbar({ currentView, setCurrentView, user, setShowAuth }) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     <div className="flex items-center cursor-pointer group" onClick={() => handleNavClick('home')}>
-            <img src="img/Logo_Nexus_Recolor_Transparente.png" className="h-10" />
+            <img src="img/logo.png" alt="Nexus" className="h-10" />
                         <img src="img/nexus-text-logo.png" alt="NEXUS" className="h-7 ml-2" />
                     </div>
                     
