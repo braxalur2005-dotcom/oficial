@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oficial-0njo.onrender.com/sitemap.xml
+
