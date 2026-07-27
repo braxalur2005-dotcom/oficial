@@ -5,8 +5,8 @@ function Footer({ setCurrentView }) {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     <div className="md:col-span-2">
                         <div className="flex items-center cursor-pointer mb-4" onClick={() => setCurrentView('home')}>
-                            <img src="img/Logo_Nexus_Recolor_Transparente.png" alt="Nexus" className="h-10" />
-                            <img src="img/nexus-text-logo.png" alt="NEXUS" className="h-7 ml-2" />
+                            <img src="img/Logo_Nexus_Recolor_Transparente.png" alt="Nexus" width="40" height="40" className="h-10" />
+                            <img src="img/nexus-text-logo.png" alt="NEXUS" width="112" height="28" className="h-7 ml-2" />
                         </div>
                         <p className="text-gray-400 max-w-sm mb-6">
                             Transformando ideas en experiencias digitales extraordinarias. Construimos el futuro de la web, un píxel a la vez.
