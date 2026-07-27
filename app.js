@@ -388,6 +388,7 @@ function App() {
                                             <div>
                                                 <p className="text-sm uppercase tracking-[0.35em] text-nexus-accent/80">{activeServiceItem.title}</p>
                                                 <h3 className="mt-2 text-3xl font-semibold text-white">{activeServiceItem.title}</h3>
+                                            </div>
                                         </div>
                                         <p className="text-gray-300 leading-relaxed mb-8">{activeServiceItem.details}</p>
                                         <ul className="space-y-4">
