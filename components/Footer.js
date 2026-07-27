@@ -58,6 +58,7 @@ function Footer({ setCurrentView }) {
                     <p className="text-gray-500">© 2026 Nexus Web Agency. Todos los derechos reservados.</p>
                 </div>
             </div>
+        </div>
         </footer>
     );
 }
