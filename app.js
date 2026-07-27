@@ -261,12 +261,13 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col relative" data-name="app" data-file="app.js">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-nexus-accent focus:text-nexus-dark focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold">Saltar al contenido principal</a>
       <style>{digitalCardStyles}</style>
       <div className="absolute inset-0 -z-20 pointer-events-none"></div>
       <div className="absolute inset-0 -z-10 bg-black/20 pointer-events-none"></div>
       <Navbar currentView={currentView} setCurrentView={setCurrentView} user={user} setShowAuth={setShowAuth} />
       
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {currentView === 'home' && (
             <div>
                 <Hero setCurrentView={setCurrentView} />
@@ -387,7 +388,6 @@ function App() {
                                             <div>
                                                 <p className="text-sm uppercase tracking-[0.35em] text-nexus-accent/80">{activeServiceItem.title}</p>
                                                 <h3 className="mt-2 text-3xl font-semibold text-white">{activeServiceItem.title}</h3>
-                                            </div>
                                         </div>
                                         <p className="text-gray-300 leading-relaxed mb-8">{activeServiceItem.details}</p>
                                         <ul className="space-y-4">
@@ -473,3 +473,4 @@ root.render(
     <App />
   </ErrorBoundary>
 );
+
