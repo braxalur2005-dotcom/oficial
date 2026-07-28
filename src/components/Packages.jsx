@@ -261,6 +261,7 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                                     <li key={feature} className="text-sm text-gray-300 flex items-center">
                                         <div className="icon-circle-check text-nexus-accent mr-2 text-sm"></div>
                                         {feature}
+                                    </li>
                                 ))}
                             </ul>
                             <p className="text-lg font-bold mt-4">Total: ${selectedPackage.price.toLocaleString('es-MX')} MXN</p>
@@ -299,24 +300,24 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                                             placeholder="MM/AA"
                                             required
                                             className="w-1/2 bg-nexus-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-accent"
-                                        disabled={isProcessing}
+                                            disabled={isProcessing}
                                         />
                                         <input
                                             type="text"
                                             placeholder="CVC"
                                             required
                                             className="w-1/2 bg-nexus-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-accent"
+                                            disabled={isProcessing}
+                                        />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        placeholder="Nombre en la tarjeta"
+                                        required
+                                        className="w-full bg-nexus-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-accent"
                                         disabled={isProcessing}
                                     />
                                 </div>
-                                <input
-                                    type="text"
-                                    placeholder="Nombre en la tarjeta"
-                                    required
-                                    className="w-full bg-nexus-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-accent"
-                                    disabled={isProcessing}
-                                />
-                            </div>
                             )}
 
                             {paymentMethod === 'paypal' && (
