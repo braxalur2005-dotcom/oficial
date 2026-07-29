@@ -49,8 +49,14 @@ app.use('/assets', express.static(path.join(PROJECT_ROOT, 'dist', 'assets'), {
 }));
 app.use(express.static(path.join(PROJECT_ROOT, 'dist')));
 
-// Respaldo: sirve el resto de archivos estáticos del proyecto (img/, video/,
-// paginas/, robots.txt, sitemap.xml, etc.) que no forman parte del build.
+// Las imágenes y videos casi nunca cambian de nombre, así que también es
+// seguro pedirle al navegador que los guarde en caché por un tiempo largo
+// (esto acelera mucho las visitas repetidas).
+app.use('/img', express.static(path.join(PROJECT_ROOT, 'img'), { maxAge: '30d' }));
+app.use('/video', express.static(path.join(PROJECT_ROOT, 'video'), { maxAge: '30d' }));
+
+// Respaldo: sirve el resto de archivos estáticos del proyecto (paginas/,
+// robots.txt, sitemap.xml, etc.) que no forman parte del build.
 app.use(express.static(PROJECT_ROOT));
 
 // ---------- CHAT (IA real con memoria persistente) ----------
