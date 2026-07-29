@@ -20,6 +20,7 @@
 
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 
 const store = require('./store');
@@ -29,10 +30,23 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const PROJECT_ROOT = path.join(__dirname, '..');
 
+// Comprime HTML/CSS/JS antes de enviarlos (gzip). Reduce el peso de la
+// página en la red sin cambiar nada del diseño ni del contenido.
+app.use(compression());
+
 app.use(express.json());
 
 // Sirve el sitio compilado (dist/) primero: HTML y JS/CSS ya pre-compilados
 // y minificados (Vite build), listos para producción.
+//
+// Los archivos dentro de dist/assets/ llevan un identificador único en el
+// nombre (por ejemplo index-Cf9bbJr3.css) que cambia cada vez que el
+// contenido cambia, así que es seguro decirle al navegador que los guarde
+// en caché por mucho tiempo: nunca vas a servir una versión vieja por error.
+app.use('/assets', express.static(path.join(PROJECT_ROOT, 'dist', 'assets'), {
+    maxAge: '1y',
+    immutable: true,
+}));
 app.use(express.static(path.join(PROJECT_ROOT, 'dist')));
 
 // Respaldo: sirve el resto de archivos estáticos del proyecto (img/, video/,
@@ -75,3 +89,4 @@ app.post('/api/leads', (req, res) => {
 app.listen(PORT, () => {
     console.log(`\n🚀 Servidor Nexus (chat IA) corriendo en http://localhost:${PORT}`);
 });
+
