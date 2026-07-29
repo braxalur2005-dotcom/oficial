@@ -145,4 +145,4 @@ export default function Profile({ user, onLogout, onUpdateUser }) {
             </div>
         </div>
     );
-    }
+}

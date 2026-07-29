@@ -31,7 +31,12 @@ const PROJECT_ROOT = path.join(__dirname, '..');
 
 app.use(express.json());
 
-// Sirve todo el sitio estático (index.html, app.js, components/, paginas/, etc.)
+// Sirve el sitio compilado (dist/) primero: HTML y JS/CSS ya pre-compilados
+// y minificados (Vite build), listos para producción.
+app.use(express.static(path.join(PROJECT_ROOT, 'dist')));
+
+// Respaldo: sirve el resto de archivos estáticos del proyecto (img/, video/,
+// paginas/, robots.txt, sitemap.xml, etc.) que no forman parte del build.
 app.use(express.static(PROJECT_ROOT));
 
 // ---------- CHAT (IA real con memoria persistente) ----------

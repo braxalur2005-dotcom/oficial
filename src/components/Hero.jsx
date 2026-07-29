@@ -42,7 +42,7 @@ export default function Hero({ setCurrentView }) {
                     <div className="relative w-full max-w-2xl overflow-hidden rounded-[1.5rem] bg-black/40 shadow-[0_20px_50px_rgba(0,0,0,0.22)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-nexus-blue/10 via-transparent to-nexus-purple/10 pointer-events-none" />
                         <div className="relative aspect-video">
-                          {videoMissing ? (
+                            {videoMissing ? (
                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-slate-950 text-center px-6">
                                     <img
                                         src={POSTER_SRC}
@@ -104,4 +104,3 @@ export default function Hero({ setCurrentView }) {
         </div>
     );
 }
-

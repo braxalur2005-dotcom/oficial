@@ -195,4 +195,3 @@ export const sendLead = async ({ nombre, correo, duda }) => {
     }
     return data;
 };
-

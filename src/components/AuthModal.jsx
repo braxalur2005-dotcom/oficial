@@ -125,4 +125,3 @@ export default function AuthModal({ onClose, onLogin }) {
         </div>
     );
 }
-
