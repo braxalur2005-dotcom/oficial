@@ -46,6 +46,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [showAuth, setShowAuth] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [adminViewingSite, setAdminViewingSite] = useState(false);
 
   useEffect(() => {
       const handleScroll = () => {
@@ -261,10 +262,10 @@ export default function App() {
 
   const isAdmin = user?.objectData?.email === 'nexus.atencion@outlook.com';
 
-  if (isAdmin) {
+  if (isAdmin && !adminViewingSite) {
     return (
       <div data-name="app" data-file="app.js">
-        <AdminDashboard user={user} onLogout={handleLogout} />
+        <AdminDashboard user={user} onLogout={handleLogout} onViewSite={() => setAdminViewingSite(true)} />
       </div>
     );
   }
@@ -276,7 +277,7 @@ export default function App() {
       <style>{digitalCardStyles}</style>
       <div className="absolute inset-0 -z-20 pointer-events-none"></div>
       <div className="absolute inset-0 -z-10 bg-black/20 pointer-events-none"></div>
-      <Navbar currentView={currentView} setCurrentView={setCurrentView} user={user} setShowAuth={setShowAuth} />
+      <Navbar currentView={currentView} setCurrentView={setCurrentView} user={user} setShowAuth={setShowAuth} isAdminViewingSite={isAdmin && adminViewingSite} onReturnToAdmin={() => setAdminViewingSite(false)} />
       
       <main id="main-content" className="flex-1">
         {currentView === 'home' && (
@@ -478,3 +479,4 @@ export default function App() {
     </div>
   );
 }
+
