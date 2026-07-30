@@ -8,8 +8,9 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
     const [isProcessing, setIsProcessing] = useState(false);
 
     const [maintenance1, setMaintenance1] = useState(false);
-    const [selectedTools, setSelectedTools] = useState([]);
     const [maintenance2, setMaintenance2] = useState(false);
+    const [selectedTools, setSelectedTools] = useState([]);
+    const [maintenance3, setMaintenance3] = useState(false);
 
     const TOOLS = [
         { id: 'cotizador', name: 'Cotizador Inteligente' },
@@ -19,15 +20,18 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
         { id: 'automatizacion', name: 'Automatización' }
     ];
 
-    const PKG1_PRICE = 10000;
-    const PKG1_MAINTENANCE = 1000;
-    const PKG2_TOOL_PRICE = 3000;
-    const PKG2_TOOL_MAINTENANCE = 300;
+    const PKG1_PRICE = 8900;
+    const PKG1_MAINTENANCE = 800;
+    const PKG2_PRICE = 16900;
+    const PKG2_MAINTENANCE = 1200;
+    const PKG3_TOOL_PRICE = 4500;
+    const PKG3_TOOL_MAINTENANCE = 500;
 
     const pkg1Monthly = maintenance1 ? PKG1_MAINTENANCE : 0;
+    const pkg2Monthly = maintenance2 ? PKG2_MAINTENANCE : 0;
 
-    const pkg2OneTime = selectedTools.length * PKG2_TOOL_PRICE;
-    const pkg2Monthly = maintenance2 ? selectedTools.length * PKG2_TOOL_MAINTENANCE : 0;
+    const pkg3OneTime = selectedTools.length * PKG3_TOOL_PRICE;
+    const pkg3Monthly = maintenance3 ? selectedTools.length * PKG3_TOOL_MAINTENANCE : 0;
 
     const toggleTool = (toolId) => {
         setSelectedTools((prev) =>
@@ -41,20 +45,16 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
             return;
         }
         setSelectedPackage({
-            id: 'todo-incluido',
-            name: 'Todo Incluido',
+            id: 'esencial',
+            name: 'Paquete Esencial',
             price: PKG1_PRICE,
             monthly: pkg1Monthly,
             features: [
                 'Cotizador Inteligente',
-                'Rastreador de Órdenes en Tiempo Real',
                 'Ubicación Digital Estratégica',
-                'SEO Orgánico',
-                'Automatización',
-                'Desarrollo a Medida (de regalo)',
-                'Diseño Responsivo (de regalo)',
-                'Alto Rendimiento (de regalo)',
-                'Accesibilidad (de regalo)'
+                'Diseño Responsivo',
+                'Alto Rendimiento',
+                'Accesibilidad'
             ]
         });
         setShowPaymentModal(true);
@@ -65,16 +65,43 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
             setShowAuth(true);
             return;
         }
+        setSelectedPackage({
+            id: 'profesional',
+            name: 'Paquete Profesional',
+            price: PKG2_PRICE,
+            monthly: pkg2Monthly,
+            features: [
+                'Cotizador Inteligente',
+                'Rastreador de Órdenes en Tiempo Real',
+                'Ubicación Digital Estratégica',
+                'SEO Orgánico',
+                'Automatización',
+                'Desarrollo a Medida (de regalo)',
+                'Diseño Responsivo (de regalo)',
+                'Alto Rendimiento (de regalo)',
+                'Accesibilidad (de regalo)',
+                'Capacitación de uso (de regalo)',
+                'Configuración inicial (de regalo)'
+            ]
+        });
+        setShowPaymentModal(true);
+    };
+
+    const handleAcquirePackage3 = () => {
+        if (!user) {
+            setShowAuth(true);
+            return;
+        }
         if (selectedTools.length === 0) {
             alert('Selecciona al menos una herramienta para armar tu paquete.');
             return;
         }
         const toolNames = TOOLS.filter((t) => selectedTools.includes(t.id)).map((t) => t.name);
         setSelectedPackage({
-            id: 'arma-tu-paquete',
-            name: 'Arma tu Paquete',
-            price: pkg2OneTime,
-            monthly: pkg2Monthly,
+            id: 'personalizado',
+            name: 'Paquete Personalizado',
+            price: pkg3OneTime,
+            monthly: pkg3Monthly,
             features: toolNames
         });
         setShowPaymentModal(true);
@@ -117,15 +144,12 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                 <p className="text-gray-400 max-w-2xl mx-auto">Elige la forma en la que quieres impulsar tu negocio de reparación.</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* PAQUETE 1 — TODO INCLUIDO */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* PAQUETE 1 — ESENCIAL */}
                 <div className="glass-panel p-8 relative flex flex-col" style={{ border: '2px solid #10e28a', borderRadius: '1rem' }}>
-                    <div className="absolute top-0 right-0 bg-gradient-to-r from-nexus-blue to-nexus-purple text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-xl shadow-lg">
-                        TODO INCLUIDO
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2 relative z-10">Paquete 1 — Todo Incluido</h3>
+                    <h3 className="text-2xl font-bold mb-2 relative z-10">Paquete 1 — Esencial</h3>
                     <p className="text-gray-400 mb-6 relative z-10">
-                        Todo lo que tu negocio de reparación necesita para vender más, en un solo paquete.
+                        Empieza a digitalizar tu negocio con las herramientas más importantes.
                     </p>
 
                     <div className="mb-6 relative z-10">
@@ -133,21 +157,11 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                         <span className="text-gray-400"> pago único</span>
                     </div>
 
-                    <p className="text-sm text-gray-400 mb-4 relative z-10">Este paquete incluye:</p>
-                    <ul className="space-y-3 mb-4 relative z-10">
-                        {['Cotizador Inteligente', 'Rastreador de Órdenes en Tiempo Real', 'Ubicación Digital Estratégica', 'SEO Orgánico', 'Automatización'].map((feature) => (
+                    <p className="text-sm text-gray-400 mb-4 relative z-10">Incluye:</p>
+                    <ul className="space-y-3 mb-6 relative z-10">
+                        {['Cotizador Inteligente', 'Ubicación Digital Estratégica', 'Diseño Responsivo', 'Alto Rendimiento', 'Accesibilidad'].map((feature) => (
                             <li key={feature} className="flex items-center text-sm text-gray-300">
                                 <div className="icon-circle-check text-nexus-accent mr-3"></div>
-                                {feature}
-                            </li>
-                        ))}
-                    </ul>
-
-                    <p className="text-sm text-nexus-accent mb-4 relative z-10">De regalo, sin costo extra:</p>
-                    <ul className="space-y-3 mb-6 relative z-10">
-                        {['Desarrollo a Medida', 'Diseño Responsivo', 'Alto Rendimiento', 'Accesibilidad'].map((feature) => (
-                            <li key={feature} className="flex items-center text-sm text-gray-300">
-                                <div className="icon-gift text-nexus-glow mr-3"></div>
                                 {feature}
                             </li>
                         ))}
@@ -161,7 +175,7 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                             className="w-5 h-5 accent-nexus-accent"
                         />
                         <span className="text-sm text-gray-200">
-                            Incluir mantenimiento mensual (+${PKG1_MAINTENANCE.toLocaleString('es-MX')} MXN/mes)
+                            Mantenimiento opcional (+${PKG1_MAINTENANCE.toLocaleString('es-MX')} MXN/mes)
                         </span>
                     </label>
 
@@ -172,23 +186,81 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                     )}
 
                     <button onClick={handleAcquirePackage1} className="btn-primary w-full mt-auto relative z-10">
-                        Solicitar Todo Incluido
+                        Solicitar Paquete Esencial
                     </button>
                 </div>
 
-                {/* PAQUETE 2 — ARMA TU PAQUETE */}
+                {/* PAQUETE 2 — PROFESIONAL (RECOMENDADO) */}
                 <div className="glass-panel p-8 relative flex flex-col" style={{ border: '2px solid #10e28a', borderRadius: '1rem' }}>
-                    <h3 className="text-2xl font-bold mb-2 relative z-10">Paquete 2 — Arma tu Paquete</h3>
+                    <div className="absolute top-0 right-0 bg-gradient-to-r from-nexus-blue to-nexus-purple text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-xl shadow-lg">
+                        ⭐ RECOMENDADO
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 relative z-10">Paquete 2 — Profesional</h3>
                     <p className="text-gray-400 mb-6 relative z-10">
-                        ¿Ya tienes página web? Elige solo las herramientas que necesitas.
+                        La mejor relación entre inversión y resultados para talleres y negocios de reparación.
                     </p>
 
                     <div className="mb-6 relative z-10">
-                        <span className="text-4xl font-bold">${PKG2_TOOL_PRICE.toLocaleString('es-MX')} MXN</span>
-                        <span className="text-gray-400"> por herramienta, pago único</span>
+                        <span className="text-4xl font-bold">${PKG2_PRICE.toLocaleString('es-MX')} MXN</span>
+                        <span className="text-gray-400"> pago único</span>
                     </div>
 
-                    <p className="text-sm text-gray-400 mb-4 relative z-10">Elige entre:</p>
+                    <p className="text-sm text-gray-400 mb-4 relative z-10">Incluye:</p>
+                    <ul className="space-y-3 mb-4 relative z-10">
+                        {['Cotizador Inteligente', 'Rastreador de Órdenes en Tiempo Real', 'Ubicación Digital Estratégica', 'SEO Orgánico', 'Automatización'].map((feature) => (
+                            <li key={feature} className="flex items-center text-sm text-gray-300">
+                                <div className="icon-circle-check text-nexus-accent mr-3"></div>
+                                {feature}
+                            </li>
+                        ))}
+                    </ul>
+
+                    <p className="text-sm text-nexus-accent mb-4 relative z-10">Además incluye sin costo adicional:</p>
+                    <ul className="space-y-3 mb-6 relative z-10">
+                        {['Desarrollo a Medida', 'Diseño Responsivo', 'Alto Rendimiento', 'Accesibilidad', 'Capacitación de uso', 'Configuración inicial'].map((feature) => (
+                            <li key={feature} className="flex items-center text-sm text-gray-300">
+                                <div className="icon-gift text-nexus-glow mr-3"></div>
+                                {feature}
+                            </li>
+                        ))}
+                    </ul>
+
+                    <label className="flex items-center gap-3 mb-6 p-4 rounded-xl bg-white/5 border border-white/10 cursor-pointer relative z-10">
+                        <input
+                            type="checkbox"
+                            checked={maintenance2}
+                            onChange={(e) => setMaintenance2(e.target.checked)}
+                            className="w-5 h-5 accent-nexus-accent"
+                        />
+                        <span className="text-sm text-gray-200">
+                            Mantenimiento opcional (+${PKG2_MAINTENANCE.toLocaleString('es-MX')} MXN/mes)
+                        </span>
+                    </label>
+
+                    {maintenance2 && (
+                        <p className="text-sm text-nexus-glow mb-4 relative z-10">
+                            Total: ${PKG2_PRICE.toLocaleString('es-MX')} MXN único + ${PKG2_MAINTENANCE.toLocaleString('es-MX')} MXN/mes
+                        </p>
+                    )}
+
+                    <button onClick={handleAcquirePackage2} className="btn-primary w-full mt-auto relative z-10">
+                        Solicitar Paquete Profesional
+                    </button>
+                </div>
+
+                {/* PAQUETE 3 — PERSONALIZADO */}
+                <div className="glass-panel p-8 relative flex flex-col" style={{ border: '2px solid #10e28a', borderRadius: '1rem' }}>
+                    <h3 className="text-2xl font-bold mb-2 relative z-10">Paquete 3 — Personalizado</h3>
+                    <p className="text-gray-400 mb-6 relative z-10">
+                        Ya tienes un sitio web. Agrega únicamente las herramientas que necesitas.
+                    </p>
+
+                    <div className="mb-6 relative z-10">
+                        <span className="text-4xl font-bold">${PKG3_TOOL_PRICE.toLocaleString('es-MX')} MXN</span>
+                        <span className="text-gray-400"> desde, por herramienta, pago único</span>
+                    </div>
+
+                    <p className="text-sm text-gray-400 mb-4 relative z-10">Puedes elegir entre:</p>
                     <div className="space-y-3 mb-6 relative z-10">
                         {TOOLS.map((tool) => (
                             <label
@@ -209,12 +281,12 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                     <label className="flex items-center gap-3 mb-4 p-4 rounded-xl bg-white/5 border border-white/10 cursor-pointer relative z-10">
                         <input
                             type="checkbox"
-                            checked={maintenance2}
-                            onChange={(e) => setMaintenance2(e.target.checked)}
+                            checked={maintenance3}
+                            onChange={(e) => setMaintenance3(e.target.checked)}
                             className="w-5 h-5 accent-nexus-accent"
                         />
                         <span className="text-sm text-gray-200">
-                            Incluir mantenimiento mensual (+${PKG2_TOOL_MAINTENANCE.toLocaleString('es-MX')} MXN/mes por herramienta)
+                            Mantenimiento opcional (+${PKG3_TOOL_MAINTENANCE.toLocaleString('es-MX')} MXN/mes por herramienta)
                         </span>
                     </label>
 
@@ -225,13 +297,13 @@ export default function Packages({ user, setShowAuth, onPurchaseSuccess }) {
                                 : `${selectedTools.length} herramienta${selectedTools.length > 1 ? 's' : ''} seleccionada${selectedTools.length > 1 ? 's' : ''}`}
                         </p>
                         <p className="text-lg font-bold mt-1">
-                            ${pkg2OneTime.toLocaleString('es-MX')} MXN
-                            {pkg2Monthly > 0 && <span className="text-nexus-glow"> + ${pkg2Monthly.toLocaleString('es-MX')} MXN/mes</span>}
+                            ${pkg3OneTime.toLocaleString('es-MX')} MXN
+                            {pkg3Monthly > 0 && <span className="text-nexus-glow"> + ${pkg3Monthly.toLocaleString('es-MX')} MXN/mes</span>}
                         </p>
                     </div>
 
                     <button
-                        onClick={handleAcquirePackage2}
+                        onClick={handleAcquirePackage3}
                         disabled={selectedTools.length === 0}
                         className="btn-secondary w-full mt-auto relative z-10 disabled:opacity-40 disabled:cursor-not-allowed"
                     >
