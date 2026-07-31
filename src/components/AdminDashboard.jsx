@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabaseClient } from '../utils/supabaseClient.js';
 
-export default function AdminDashboard({ user, onLogout }) {
+export default function AdminDashboard({ user, onLogout, onViewSite }) {
     const [currentTab, setCurrentTab] = useState('dashboard');
     const [usersList, setUsersList] = useState([]);
     const [purchasesList, setPurchasesList] = useState([]);
@@ -206,6 +206,10 @@ export default function AdminDashboard({ user, onLogout }) {
                         <h1 className="text-3xl font-bold">Panel de Control</h1>
                         <p className="text-gray-400">Gestiona usuarios y revisa los ingresos de Nexus.</p>
                     </div>
+                    <button onClick={onViewSite} className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition text-sm">
+                        <div className="icon-globe"></div>
+                        <span>Ver página principal</span>
+                    </button>
                 </header>
 
                 {renderTabContent()}
@@ -213,4 +217,5 @@ export default function AdminDashboard({ user, onLogout }) {
         </div>
     );
 }
+
 
