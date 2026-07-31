@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Navbar({ currentView, setCurrentView, user, setShowAuth }) {
+export default function Navbar({ currentView, setCurrentView, user, setShowAuth, isAdminViewingSite, onReturnToAdmin }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const handleNavClick = (view) => {
@@ -27,7 +27,7 @@ export default function Navbar({ currentView, setCurrentView, user, setShowAuth 
                     
                     <div className="hidden md:flex items-center">
                         {user ? (
-                            <button onClick={() => handleNavClick('profile')} className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition">
+                            <button onClick={() => isAdminViewingSite ? onReturnToAdmin() : handleNavClick('profile')} className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition">
                                 <div className="icon-user text-xl"></div>
                                 <span>{user.objectData.name.split(' ')[0]}</span>
                             </button>
@@ -57,7 +57,7 @@ export default function Navbar({ currentView, setCurrentView, user, setShowAuth 
                         
                         <div className="pt-4 border-t border-white/10">
                             {user ? (
-                                <button onClick={() => handleNavClick('profile')} className="w-full flex items-center justify-center space-x-2 bg-white/10 px-4 py-3 rounded-lg hover:bg-white/20 transition text-white">
+                                <button onClick={() => isAdminViewingSite ? onReturnToAdmin() : handleNavClick('profile')} className="w-full flex items-center justify-center space-x-2 bg-white/10 px-4 py-3 rounded-lg hover:bg-white/20 transition text-white">
                                     <div className="icon-user text-xl"></div>
                                     <span>Mi Perfil ({user.objectData.name.split(' ')[0]})</span>
                                 </button>
@@ -73,5 +73,6 @@ export default function Navbar({ currentView, setCurrentView, user, setShowAuth 
         </nav>
     );
 }
+
 
 
