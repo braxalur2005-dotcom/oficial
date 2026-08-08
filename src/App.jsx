@@ -110,7 +110,7 @@ export default function App() {
           cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-accent/20 text-nexus-accent text-3xl',
           description: 'Aplicaciones construidas desde cero con las últimas tecnologías y arquitectura robusta.',
           details: 'Sistemas online rápidos, confiables y personalizados para tu negocio. Ideal para proyectos que necesitan un backend sólido, integraciones a medida y una experiencia premium para tus clientes.',
-          imageSrc: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+          imageSrc: 'img/card-desarrollo.jpg',
           imageAlt: 'Desarrollo web a medida',
           features: [
               'Interfaces modernas y funcionales',
@@ -128,7 +128,7 @@ export default function App() {
           cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-purple/20 text-nexus-purple text-3xl',
           description: 'Experiencias fluidas y adaptables en dispositivos móviles, tablets y escritorio.',
           details: 'Tu sitio se verá impecable en cualquier pantalla, optimizando la experiencia de usuario para lograr más conversiones y una navegación clara desde el primer segundo.',
-          imageSrc: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80',
+          imageSrc: 'img/card-diseno.jpg',
           imageAlt: 'Diseño de interfaz responsiva',
           features: [
               'Diseño pensado en el usuario',
@@ -146,7 +146,7 @@ export default function App() {
           cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-blue/20 text-nexus-blue text-3xl',
           description: 'Carga ultra rápida y optimización extrema de SEO para destacar en buscadores.',
           details: 'Tu web carga veloz, ofrece una experiencia fluida y está lista para escalar. Menos rebotes, mejor posicionamiento y más clientes encontrando tu marca.',
-          imageSrc: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
+          imageSrc: 'img/card-rendimiento.jpg',
           imageAlt: 'Optimización de rendimiento web',
           features: [
               'Optimización de velocidad',
@@ -164,7 +164,7 @@ export default function App() {
           cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-accent/20 text-nexus-accent text-3xl',
           description: 'Tu cliente describe el daño, el sistema calcula el costo al instante. Sin llamadas, sin esperas.',
           details: 'Cotizaciones automáticas 24/7 directamente en tu sitio. Tu cliente describe el daño, el sistema calcula el costo al instante. Sin llamadas, sin esperas.',
-          imageSrc: 'img/cotizador-inteligente.jpg.png',
+          imageSrc: 'img/card-cotizador.jpg',
           imageAlt: 'Cotizador Inteligente Newo Studio Tecno',
           features: [
               'Formulario guiado por dispositivo',
@@ -182,7 +182,7 @@ export default function App() {
           cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-purple/20 text-nexus-purple text-3xl',
           description: 'Tu cliente ve el estatus real de su equipo sin llamadas interminables.',
           details: 'Se acabaron las llamadas de “¿ya está listo mi aparato?”. Tu cliente usa su número de orden y ve un semáforo en vivo con el estatus real: Recibido, En diagnóstico, En reparación y Listo.',
-          imageSrc: 'img/rastreador-ordenes.jpg.png',
+          imageSrc: 'img/card-rastreador.jpg',
           imageAlt: 'Rastreador de Órdenes en Tiempo Real Newo Studio Tecno',
           features: [
               'Semáforo visual con 4 estatus claros',
@@ -200,7 +200,7 @@ export default function App() {
           cardBadgeClasses: 'inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/5 border border-nexus-blue/20 text-nexus-blue text-3xl',
           description: 'Aparece primero cuando clientes de tu zona buscan reparación cerca de ti.',
           details: 'Cuando alguien busca en Google “reparación de celulares cerca de mí”, queremos que salgas tú primero. Configuramos tu página para posicionarla como la opción más cercana y confiable de tu zona.',
-          imageSrc: 'img/ubicacion-digital.jpg.png',
+          imageSrc: 'img/card-ubicacion.jpg',
           imageAlt: 'Ubicación Digital Estratégica Newo Studio Tecno',
           features: [
               'Apareces primero en búsquedas de tu zona',
@@ -210,9 +210,6 @@ export default function App() {
       }
   ];
 
-  const [activeService, setActiveService] = useState('desarrollo');
-  const activeServiceItem = services.find((item) => item.id === activeService) || services[0];
-  const touchStartX = useRef(null);
   const digitalCardStyles = `
     .strategy-card {
       width: 100%;
@@ -234,31 +231,6 @@ export default function App() {
       justify-content: flex-start;
     }
   `;
-
-  const changeService = (direction) => {
-      const currentIndex = services.findIndex((item) => item.id === activeService);
-      if (currentIndex === -1) return;
-      const nextIndex = direction === 'next'
-          ? Math.min(currentIndex + 1, services.length - 1)
-          : Math.max(currentIndex - 1, 0);
-      setActiveService(services[nextIndex].id);
-  };
-
-  const handleTouchStart = (event) => {
-      touchStartX.current = event.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (event) => {
-      if (touchStartX.current === null) return;
-      const touchEndX = event.changedTouches[0].clientX;
-      const deltaX = touchEndX - touchStartX.current;
-      if (deltaX > 50) {
-          changeService('prev');
-      } else if (deltaX < -50) {
-          changeService('next');
-      }
-      touchStartX.current = null;
-  };
 
   const isAdmin = user?.objectData?.email === 'nexus.atencion@outlook.com';
 
@@ -335,89 +307,42 @@ export default function App() {
                     </div>
                 </section>
                 <section className="max-w-7xl mx-auto px-4 py-20">
-                    <div className="text-center mb-12">
+                    <div className="text-center mb-14">
                         <h2 className="text-3xl font-bold">SOLUCIONES DIGITALES QUE <span className="gradient-text">TRABAJAN POR TI</span></h2>
+                        <p className="mt-4 text-gray-400 max-w-2xl mx-auto">Todo lo que tu negocio necesita para crecer en línea, en un solo lugar.</p>
                     </div>
- 
-                    <div className="px-0">
-                        <div className="mx-auto max-w-6xl">
-                            <div className="mb-6 flex items-center justify-center gap-3">
-                                <button
-                                    type="button"
-                                    onClick={() => changeService('prev')}
-                                    className="button group"
-                                    aria-label="Sección anterior"
-                                >
-                                    <span className="button-content">
-                                        <svg
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            className="button-icon button-icon-left"
-                                        >
-                                            <path d="M11 19l-7-7 7-7m8 14l-7-7 7-7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
-                                        </svg>
-                                    </span>
-                                </button>
- 
-                                <div className="min-w-0 flex-1 text-center">
-                                    <span className="text-sm font-semibold uppercase tracking-[0.35em] text-nexus-accent/80">
-                                        {activeServiceItem.title}
-                                    </span>
-                                </div>
- 
-                                <button
-                                    type="button"
-                                    onClick={() => changeService('next')}
-                                    className="button group"
-                                    aria-label="Sección siguiente"
-                                >
-                                    <span className="button-content">
-                                        <svg
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            className="button-icon button-icon-right"
-                                        >
-                                            <path d="M13 5l7 7-7 7M5 5l7 7-7 7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
- 
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {services.map((service) => (
                             <div
-                                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-transparent p-4 shadow-none sm:p-6 lg:p-8"
-                                onTouchStart={handleTouchStart}
-                                onTouchEnd={handleTouchEnd}
-                                style={{ touchAction: 'pan-y' }}
+                                key={service.id}
+                                className="group relative rounded-3xl border border-white/10 bg-white/5 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-nexus-accent/40 hover:shadow-[0_20px_60px_rgba(0,184,255,0.15)]"
                             >
-                                <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
-                                    <div>
-                                        <div className="flex items-center gap-4 mb-6">
-                                            <div className={activeServiceItem.cardBadgeClasses}>
-                                                <i className={activeServiceItem.icon}></i>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm uppercase tracking-[0.35em] text-nexus-accent/80">{activeServiceItem.title}</p>
-                                                <h3 className="mt-2 text-3xl font-semibold text-white">{activeServiceItem.title}</h3>
-                                            </div>
-                                        </div>
-                                        <p className="text-gray-300 leading-relaxed mb-8">{activeServiceItem.details}</p>
-                                        <ul className="space-y-4">
-                                            {activeServiceItem.features.map((feature) => (
-                                                <li key={feature} className="flex items-start gap-3 text-gray-200">
-                                                    <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-nexus-accent/15 text-nexus-accent">✓</span>
-                                                    <span>{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                <div className="relative h-44 overflow-hidden">
+                                    <img
+                                        src={service.imageSrc}
+                                        alt={service.imageAlt}
+                                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-nexus-dark via-nexus-dark/10 to-transparent"></div>
+                                </div>
+                                <div className="p-8 pt-0">
+                                    <div className={`${service.cardBadgeClasses} -mt-8 mb-5 relative z-10 border-4 border-nexus-dark shadow-lg`}>
+                                        <i className={service.icon}></i>
                                     </div>
-                                    <div className="group rounded-[1.75rem] overflow-hidden border border-white/10 bg-black/10 shadow-[0_12px_50px_rgba(0,0,0,0.35)] transition-transform duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
-                                        <img src={activeServiceItem.imageSrc} alt={activeServiceItem.imageAlt} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                                    </div>
+                                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                                    <p className="text-gray-400 leading-relaxed mb-6">{service.description}</p>
+                                    <ul className="space-y-3">
+                                        {service.features.map((feature) => (
+                                            <li key={feature} className="flex items-start gap-3 text-sm text-gray-300">
+                                                <span className="mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-nexus-accent/15 text-nexus-accent text-xs">✓</span>
+                                                <span>{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </section>
                 <section id="ubicacion" className="section section--alt mt-20">
@@ -479,4 +404,5 @@ export default function App() {
     </div>
   );
 }
+
 
