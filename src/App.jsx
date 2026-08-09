@@ -362,13 +362,12 @@ export default function App() {
                         </div>
 
                         <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden">
-                            <div className="relative h-56 overflow-hidden">
+                            <div className="relative">
                                 <img
                                     src={activeServiceItem.imageSrc}
                                     alt={activeServiceItem.imageAlt}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-auto block"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-nexus-dark via-nexus-dark/20 to-transparent"></div>
                                 <div className={`${activeServiceItem.cardBadgeClasses} absolute bottom-4 left-6 border-4 border-nexus-dark shadow-lg`}>
                                     <i className={activeServiceItem.icon}></i>
                                 </div>
@@ -467,6 +466,7 @@ export default function App() {
     </div>
   );
 }
+
 
 
 
