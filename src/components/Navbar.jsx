@@ -12,7 +12,7 @@ export default function Navbar({ currentView, setCurrentView, user, setShowAuth,
         <nav className="fixed top-0 left-0 right-0 z-50 bg-nexus-dark/50 backdrop-blur-md border-b border-white/10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
-                    <div className="flex items-center cursor-pointer group" onClick={() => handleNavClick('home')}>
+                    <div className="flex items-center cursor-pointer group" onClick={() => { handleNavClick('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             <img src="img/Logo_Nexus_Recolor_Transparente.png" alt="Nexus" width="40" height="40" className="h-10" />
                         <img src="img/nexus-text-logo.png" alt="NEXUS" width="112" height="28" className="h-7 ml-2" />
                     </div>
@@ -73,6 +73,7 @@ export default function Navbar({ currentView, setCurrentView, user, setShowAuth,
         </nav>
     );
 }
+
 
 
 
