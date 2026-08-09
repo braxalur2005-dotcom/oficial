@@ -47,6 +47,8 @@ export default function App() {
   const [showAuth, setShowAuth] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [adminViewingSite, setAdminViewingSite] = useState(false);
+  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+  const [isServiceExpanded, setIsServiceExpanded] = useState(false);
 
   useEffect(() => {
       const handleScroll = () => {
@@ -232,6 +234,22 @@ export default function App() {
     }
   `;
 
+  const goToPrevService = () => {
+      if (activeServiceIndex > 0) {
+          setActiveServiceIndex(activeServiceIndex - 1);
+          setIsServiceExpanded(false);
+      }
+  };
+
+  const goToNextService = () => {
+      if (activeServiceIndex < services.length - 1) {
+          setActiveServiceIndex(activeServiceIndex + 1);
+          setIsServiceExpanded(false);
+      }
+  };
+
+  const activeServiceItem = services[activeServiceIndex];
+
   const isAdmin = user?.objectData?.email === 'nexus.atencion@outlook.com';
 
   if (isAdmin && !adminViewingSite) {
@@ -312,37 +330,82 @@ export default function App() {
                         <p className="mt-4 text-gray-400 max-w-2xl mx-auto">Todo lo que tu negocio necesita para crecer en línea, en un solo lugar.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {services.map((service) => (
-                            <div
-                                key={service.id}
-                                className="group relative rounded-3xl border border-white/10 bg-white/5 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-nexus-accent/40 hover:shadow-[0_20px_60px_rgba(0,184,255,0.15)]"
+                    <div className="max-w-3xl mx-auto">
+                        <div className="mb-6 flex items-center justify-center gap-4">
+                            <button
+                                type="button"
+                                onClick={goToPrevService}
+                                disabled={activeServiceIndex === 0}
+                                aria-label="Solución anterior"
+                                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:border-nexus-accent/50 hover:text-nexus-accent disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-white/10 disabled:hover:text-white"
                             >
-                                <div className="relative h-44 overflow-hidden">
-                                    <img
-                                        src={service.imageSrc}
-                                        alt={service.imageAlt}
-                                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-nexus-dark via-nexus-dark/10 to-transparent"></div>
-                                </div>
-                                <div className="p-8 pt-0">
-                                    <div className={`${service.cardBadgeClasses} -mt-8 mb-5 relative z-10 border-4 border-nexus-dark shadow-lg`}>
-                                        <i className={service.icon}></i>
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                                    <p className="text-gray-400 leading-relaxed mb-6">{service.description}</p>
-                                    <ul className="space-y-3">
-                                        {service.features.map((feature) => (
-                                            <li key={feature} className="flex items-start gap-3 text-sm text-gray-300">
-                                                <span className="mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-nexus-accent/15 text-nexus-accent text-xs">✓</span>
-                                                <span>{feature}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                                    <path d="M15 19l-7-7 7-7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
+                                </svg>
+                            </button>
+
+                            <span className="text-sm font-semibold uppercase tracking-[0.35em] text-nexus-accent/80">
+                                {activeServiceIndex + 1} / {services.length}
+                            </span>
+
+                            <button
+                                type="button"
+                                onClick={goToNextService}
+                                disabled={activeServiceIndex === services.length - 1}
+                                aria-label="Siguiente solución"
+                                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:border-nexus-accent/50 hover:text-nexus-accent disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-white/10 disabled:hover:text-white"
+                            >
+                                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                                    <path d="M9 5l7 7-7 7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden">
+                            <div className="relative h-56 overflow-hidden">
+                                <img
+                                    src={activeServiceItem.imageSrc}
+                                    alt={activeServiceItem.imageAlt}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-nexus-dark via-nexus-dark/20 to-transparent"></div>
+                                <div className={`${activeServiceItem.cardBadgeClasses} absolute bottom-4 left-6 border-4 border-nexus-dark shadow-lg`}>
+                                    <i className={activeServiceItem.icon}></i>
                                 </div>
                             </div>
-                        ))}
+                            <div className="p-8">
+                                <h3 className="text-2xl font-bold text-white mb-5">{activeServiceItem.title}</h3>
+
+                                {!isServiceExpanded ? (
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsServiceExpanded(true)}
+                                        className="btn-secondary"
+                                    >
+                                        Ver más
+                                    </button>
+                                ) : (
+                                    <div className="animate-in fade-in duration-300">
+                                        <p className="text-gray-400 leading-relaxed mb-6">{activeServiceItem.details}</p>
+                                        <ul className="space-y-3 mb-6">
+                                            {activeServiceItem.features.map((feature) => (
+                                                <li key={feature} className="flex items-start gap-3 text-sm text-gray-300">
+                                                    <span className="mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-nexus-accent/15 text-nexus-accent text-xs">✓</span>
+                                                    <span>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <button
+                                            type="button"
+                                            onClick={() => setIsServiceExpanded(false)}
+                                            className="btn-secondary"
+                                        >
+                                            Ver menos
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <section id="ubicacion" className="section section--alt mt-20">
@@ -404,5 +467,6 @@ export default function App() {
     </div>
   );
 }
+
 
 
