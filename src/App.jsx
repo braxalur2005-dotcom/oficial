@@ -47,8 +47,7 @@ export default function App() {
   const [showAuth, setShowAuth] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [adminViewingSite, setAdminViewingSite] = useState(false);
-  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
-  const [isServiceExpanded, setIsServiceExpanded] = useState(false);
+  const [activeServiceId, setActiveServiceId] = useState('desarrollo');
 
   useEffect(() => {
       const handleScroll = () => {
@@ -234,21 +233,7 @@ export default function App() {
     }
   `;
 
-  const goToPrevService = () => {
-      if (activeServiceIndex > 0) {
-          setActiveServiceIndex(activeServiceIndex - 1);
-          setIsServiceExpanded(false);
-      }
-  };
 
-  const goToNextService = () => {
-      if (activeServiceIndex < services.length - 1) {
-          setActiveServiceIndex(activeServiceIndex + 1);
-          setIsServiceExpanded(false);
-      }
-  };
-
-  const activeServiceItem = services[activeServiceIndex];
 
   const isAdmin = user?.objectData?.email === 'nexus.atencion@outlook.com';
 
@@ -330,80 +315,53 @@ export default function App() {
                         <p className="mt-4 text-gray-400 max-w-2xl mx-auto">Todo lo que tu negocio necesita para crecer en línea, en un solo lugar.</p>
                     </div>
 
-                    <div className="max-w-3xl mx-auto">
-                        <div className="mb-6 flex items-center justify-center gap-4">
-                            <button
-                                type="button"
-                                onClick={goToPrevService}
-                                disabled={activeServiceIndex === 0}
-                                aria-label="Solución anterior"
-                                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:border-nexus-accent/50 hover:text-nexus-accent disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-white/10 disabled:hover:text-white"
-                            >
-                                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-                                    <path d="M15 19l-7-7 7-7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
-                                </svg>
-                            </button>
-
-                            <span className="text-sm font-semibold uppercase tracking-[0.35em] text-nexus-accent/80">
-                                {activeServiceIndex + 1} / {services.length}
-                            </span>
-
-                            <button
-                                type="button"
-                                onClick={goToNextService}
-                                disabled={activeServiceIndex === services.length - 1}
-                                aria-label="Siguiente solución"
-                                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:border-nexus-accent/50 hover:text-nexus-accent disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-white/10 disabled:hover:text-white"
-                            >
-                                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-                                    <path d="M9 5l7 7-7 7" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
-                                </svg>
-                            </button>
+                    <div className="tabs">
+                        <div className="tabs__nav flex flex-wrap justify-center gap-x-8 gap-y-3 border-b border-white/10 mb-12">
+                            {services.map((service) => (
+                                <button
+                                    key={service.id}
+                                    type="button"
+                                    onClick={() => setActiveServiceId(service.id)}
+                                    className={`relative pb-4 text-xs md:text-sm font-semibold uppercase tracking-[0.08em] transition-colors duration-200 ${activeServiceId === service.id ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                                >
+                                    {service.title}
+                                    <span className={`absolute left-0 right-0 -bottom-px h-0.5 bg-gradient-to-r from-nexus-blue to-nexus-purple transition-transform duration-300 origin-left ${activeServiceId === service.id ? 'scale-x-100' : 'scale-x-0'}`} />
+                                </button>
+                            ))}
                         </div>
 
-                        <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden">
-                            <div className="relative">
-                                <img
-                                    src={activeServiceItem.imageSrc}
-                                    alt={activeServiceItem.imageAlt}
-                                    className="w-full h-auto block"
-                                />
-                                <div className={`${activeServiceItem.cardBadgeClasses} absolute bottom-4 left-6 border-4 border-nexus-dark shadow-lg`}>
-                                    <i className={activeServiceItem.icon}></i>
-                                </div>
-                            </div>
-                            <div className="p-8">
-                                <h3 className="text-2xl font-bold text-white mb-5">{activeServiceItem.title}</h3>
-
-                                {!isServiceExpanded ? (
-                                    <button
-                                        type="button"
-                                        onClick={() => setIsServiceExpanded(true)}
-                                        className="btn-secondary"
-                                    >
-                                        Ver más
-                                    </button>
-                                ) : (
-                                    <div className="animate-in fade-in duration-300">
-                                        <p className="text-gray-400 leading-relaxed mb-6">{activeServiceItem.details}</p>
-                                        <ul className="space-y-3 mb-6">
-                                            {activeServiceItem.features.map((feature) => (
-                                                <li key={feature} className="flex items-start gap-3 text-sm text-gray-300">
-                                                    <span className="mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-nexus-accent/15 text-nexus-accent text-xs">✓</span>
-                                                    <span>{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <button
-                                            type="button"
-                                            onClick={() => setIsServiceExpanded(false)}
-                                            className="btn-secondary"
-                                        >
-                                            Ver menos
-                                        </button>
+                        <div className="tabs__content">
+                            {services.map((service) => (
+                                <div
+                                    key={service.id}
+                                    className={`tab-pane ${activeServiceId === service.id ? 'tab-pane--active' : ''}`}
+                                >
+                                    <div className="grid gap-10 lg:grid-cols-2 items-center rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10">
+                                        <div>
+                                            <div className={service.badgeClasses}>
+                                                <i className={service.icon}></i>
+                                            </div>
+                                            <h3 className="text-2xl font-bold text-white mt-6 mb-4">{service.title}</h3>
+                                            <p className="text-gray-400 leading-relaxed mb-8">{service.details}</p>
+                                            <ul className="space-y-4">
+                                                {service.features.map((feature) => (
+                                                    <li key={feature} className="flex items-center gap-3 text-sm text-gray-300">
+                                                        <span className="h-2 w-2 rounded-sm bg-gradient-to-r from-nexus-blue to-nexus-purple flex-shrink-0"></span>
+                                                        <span>{feature}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        <div className="relative rounded-3xl overflow-hidden aspect-[3/2] border border-white/10">
+                                            <img
+                                                src={service.imageSrc}
+                                                alt={service.imageAlt}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
                                     </div>
-                                )}
-                            </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
