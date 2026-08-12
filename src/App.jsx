@@ -47,7 +47,15 @@ export default function App() {
   const [showAuth, setShowAuth] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [adminViewingSite, setAdminViewingSite] = useState(false);
-  const [activeServiceId, setActiveServiceId] = useState('desarrollo');
+  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+
+  const goToPrevService = () => {
+      setActiveServiceIndex((current) => Math.max(0, current - 1));
+  };
+
+  const goToNextService = () => {
+      setActiveServiceIndex((current) => Math.min(services.length - 1, current + 1));
+  };
 
   useEffect(() => {
       const handleScroll = () => {
@@ -316,25 +324,56 @@ export default function App() {
                     </div>
 
                     <div className="tabs">
-                        <div className="tabs__nav flex flex-wrap justify-center gap-x-8 gap-y-3 border-b border-white/10 mb-12">
-                            {services.map((service) => (
-                                <button
-                                    key={service.id}
-                                    type="button"
-                                    onClick={() => setActiveServiceId(service.id)}
-                                    className={`relative pb-4 text-xs md:text-sm font-semibold uppercase tracking-[0.08em] transition-colors duration-200 ${activeServiceId === service.id ? 'text-white' : 'text-gray-500 hover:text-white'}`}
-                                >
-                                    {service.title}
-                                    <span className={`absolute left-0 right-0 -bottom-px h-0.5 bg-gradient-to-r from-nexus-blue to-nexus-purple transition-transform duration-300 origin-left ${activeServiceId === service.id ? 'scale-x-100' : 'scale-x-0'}`} />
-                                </button>
-                            ))}
+                        <div className="mb-10 flex items-center justify-center gap-4">
+                            <span className="font-mono text-xs tracking-[0.3em] text-gray-500">
+                                0{activeServiceIndex + 1}
+                            </span>
+                            <div className="relative h-1 w-40 overflow-hidden rounded-full bg-white/10 sm:w-56">
+                                <div
+                                    className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-nexus-blue to-nexus-purple transition-all duration-500 ease-out"
+                                    style={{ width: `${((activeServiceIndex + 1) / services.length) * 100}%` }}
+                                />
+                            </div>
+                            <span className="font-mono text-xs tracking-[0.3em] text-gray-500">
+                                0{services.length}
+                            </span>
                         </div>
 
-                        <div className="tabs__content">
-                            {services.map((service) => (
+                        <div className="tabs__content relative">
+                            <button
+                                type="button"
+                                onClick={goToPrevService}
+                                disabled={activeServiceIndex === 0}
+                                aria-label="Servicio anterior"
+                                className="group absolute left-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 sm:-translate-x-1/3 disabled:cursor-not-allowed disabled:opacity-20"
+                            >
+                                <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-nexus-dark/90 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-all duration-300 group-hover:border-transparent group-hover:shadow-[0_0_25px_rgba(0,184,255,0.45)] group-active:scale-90 sm:h-14 sm:w-14">
+                                    <span className="absolute inset-0 rounded-full bg-gradient-to-br from-nexus-blue to-nexus-purple opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                    <svg viewBox="0 0 24 24" fill="none" className="relative h-5 w-5 text-white transition-transform duration-300 group-hover:-translate-x-0.5 sm:h-6 sm:w-6">
+                                        <path d="M15 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+                                    </svg>
+                                </span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={goToNextService}
+                                disabled={activeServiceIndex === services.length - 1}
+                                aria-label="Siguiente servicio"
+                                className="group absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 sm:translate-x-1/3 disabled:cursor-not-allowed disabled:opacity-20"
+                            >
+                                <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-nexus-dark/90 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-all duration-300 group-hover:border-transparent group-hover:shadow-[0_0_25px_rgba(0,184,255,0.45)] group-active:scale-90 sm:h-14 sm:w-14">
+                                    <span className="absolute inset-0 rounded-full bg-gradient-to-br from-nexus-blue to-nexus-purple opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                    <svg viewBox="0 0 24 24" fill="none" className="relative h-5 w-5 text-white transition-transform duration-300 group-hover:translate-x-0.5 sm:h-6 sm:w-6">
+                                        <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+                                    </svg>
+                                </span>
+                            </button>
+
+                            {services.map((service, index) => (
                                 <div
                                     key={service.id}
-                                    className={`tab-pane ${activeServiceId === service.id ? 'tab-pane--active' : ''}`}
+                                    className={`tab-pane ${index === activeServiceIndex ? 'tab-pane--active' : ''}`}
                                 >
                                     <div className="grid gap-10 lg:grid-cols-2 items-center rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10">
                                         <div>
