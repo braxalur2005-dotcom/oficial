@@ -142,3 +142,20 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #34d399;
 }
+/* Legal pages (Terms, Privacy, Cookies) */
+.legal-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 1.5rem;
+}
+.legal-content h3:first-child {
+    margin-top: 0;
+}
+.legal-content ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
