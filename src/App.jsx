@@ -7,6 +7,8 @@ import Footer from './components/Footer.jsx';
 import AuthModal from './components/AuthModal.jsx';
 import Profile from './components/Profile.jsx';
 import AdminDashboard from './components/AdminDashboard.jsx';
+import { TermsPage, PrivacyPage, CookiesPage } from './components/LegalPages.jsx';
+import CookieBanner from './components/CookieBanner.jsx';
 import { getCurrentUser, logoutUser } from './utils/db.js';
 
 export class ErrorBoundary extends React.Component {
@@ -165,7 +167,7 @@ export default function App() {
       },
       {
           id: 'cotizacion',
-          title: 'Cotización Inteligente',
+          title: 'Cotizador Inteligente',
           icon: 'icon-calculator',
           buttonBaseClasses: 'w-full text-left rounded-3xl border bg-white/5 p-6 transition duration-300 hover:border-white/20 hover:bg-white/10',
           activeButtonClasses: 'border-nexus-accent/60 bg-nexus-accent/10 shadow-[0_0_30px_rgba(59,130,246,0.18)]',
@@ -174,7 +176,7 @@ export default function App() {
           description: 'Tu cliente describe el daño, el sistema calcula el costo al instante. Sin llamadas, sin esperas.',
           details: 'Cotizaciones automáticas 24/7 directamente en tu sitio. Tu cliente describe el daño, el sistema calcula el costo al instante. Sin llamadas, sin esperas.',
           imageSrc: 'img/card-cotizador.jpg',
-          imageAlt: 'Cotizador Inteligente Newo Studio Tecno',
+          imageAlt: 'Cotizador Inteligente — Nexus',
           features: [
               'Formulario guiado por dispositivo',
               'Precios en tiempo real',
@@ -192,7 +194,7 @@ export default function App() {
           description: 'Tu cliente ve el estatus real de su equipo sin llamadas interminables.',
           details: 'Se acabaron las llamadas de “¿ya está listo mi aparato?”. Tu cliente usa su número de orden y ve un semáforo en vivo con el estatus real: Recibido, En diagnóstico, En reparación y Listo.',
           imageSrc: 'img/card-rastreador.jpg',
-          imageAlt: 'Rastreador de Órdenes en Tiempo Real Newo Studio Tecno',
+          imageAlt: 'Rastreador de Órdenes en Tiempo Real — Nexus',
           features: [
               'Semáforo visual con 4 estatus claros',
               'Notificaciones automáticas de avance',
@@ -210,7 +212,7 @@ export default function App() {
           description: 'Aparece primero cuando clientes de tu zona buscan reparación cerca de ti.',
           details: 'Cuando alguien busca en Google “reparación de celulares cerca de mí”, queremos que salgas tú primero. Configuramos tu página para posicionarla como la opción más cercana y confiable de tu zona.',
           imageSrc: 'img/card-ubicacion.jpg',
-          imageAlt: 'Ubicación Digital Estratégica Newo Studio Tecno',
+          imageAlt: 'Ubicación Digital Estratégica — Nexus',
           features: [
               'Apareces primero en búsquedas de tu zona',
               'Ficha de Google optimizada con mapa, horarios y reseñas',
@@ -444,6 +446,9 @@ export default function App() {
         {currentView === 'packages' && <Packages user={user} setShowAuth={setShowAuth} onPurchaseSuccess={handlePurchaseSuccess} />}
         {currentView === 'contact' && <Contact />}
         {currentView === 'profile' && <Profile user={user} onLogout={handleLogout} onUpdateUser={handleUpdateUser} />}
+        {currentView === 'terms' && <TermsPage setCurrentView={setCurrentView} />}
+        {currentView === 'privacy' && <PrivacyPage setCurrentView={setCurrentView} />}
+        {currentView === 'cookies' && <CookiesPage setCurrentView={setCurrentView} />}
       </main>
 
       <Footer setCurrentView={setCurrentView} />
@@ -460,6 +465,7 @@ export default function App() {
       </button>
 
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} onLogin={handleLogin} />}
+      <CookieBanner setCurrentView={setCurrentView} />
     </div>
   );
 }
