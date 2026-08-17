@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { sendLead } from '../utils/db.js';
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -27,6 +28,17 @@ export default function Contact() {
         
         // Censor before sending
         const censoredMessage = censorBadWords(formData.message);
+
+        // Guarda el mensaje en la base de datos para que aparezca en el
+        // Panel de Control del administrador (pestaña "Mensajes"). Se hace
+        // en paralelo y sin bloquear el envío del correo: si falla, el
+        // mensaje igual llega por email más abajo.
+        const duda = formData.phone
+            ? `Tel: ${formData.phone} — ${censoredMessage}`
+            : censoredMessage;
+        sendLead({ nombre: formData.name, correo: formData.email, duda }).catch((err) => {
+            console.error('No se pudo guardar el mensaje en el panel de administrador:', err);
+        });
         
         // FormSubmit integration logic (since it's a static demo, we submit directly via action url)
         // But we intercept to censor first. We can programmatically create a form to submit or use fetch.
